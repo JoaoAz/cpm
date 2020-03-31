@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+    <title>L15 - Animating objects</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+</head>
+
+<body>
+    <!-- ******** SOME THINGS HAVE CHANGED WITH v1.0.4 ******** -->
+    <!-- The <a-animation> system was dismissed with the v0.9.0 release,
+         and since then A-Frame started including the "animation" component
+         in its core default components, so there is no more need to install
+         any script to use it (line 37, 46, 53, 66, 80, 92, and 103).
+         You can learn more about the "animation" component in Section 7
+         Lecture 31 "Animation component. Moreover, since some of the properties
+         come with different names, you can find all their names and values
+         on the official A-Frame documentation at this link:
+         https://aframe.io/docs/1.0.0/components/animation.html -->
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="mech" src="mech_drone/scene.gltf"></a-asset-item>
+            <audio id="som" src="som/laser_20.mp3"></audio>
+        </a-assets>
+
+        <!-- Camera -->
+        <a-entity
+        position="0 0 8">
+            <a-camera></a-camera>
+        </a-entity>
+        
+        <a-sky color="#000"></a-sky>
+
+        <a-plane color="#15212b" roughness="1" scale="1000 1000 1" repeat="2 2" rotation="-90 0 0"></a-plane>
+
+
+        <a-entity id="coluna" 
+        position="0 0 0" sound="src: #som; autoplay: true; loop:true"
+        animation="property: position;
+        from: -10 2 2;
+        to: 12 2 2;
+        dur: 5000;
+        loop:true;
+        dir: alternate;
+        easing: linear"
+        ></a-entity>
+
+        <a-light
+        type="point"
+        color="#c0c0c0"
+        intensity="1.5"
+        animation="property: position;
+        from: -10 3.5 2;
+        to: 12 3.5 2;
+        dur: 5000;
+        loop:true;
+        dir: alternate;
+        easing: linear"
+        ></a-light>
+
+        <!-- Rotating Box -->
+        <a-entity 
+        geometry="primitive: plane; width: 7; height: 1"
+        position="-8 2 0"
+        material="color: #d00000; roughness:1;"
+        text="width: 10; 
+        color: #000;
+        wrapCount: 90; 
+        align: center;
+        value: property: rotation | to: 0 360 0 | loop: true | dur: 5000 | easing: linear"></a-entity>
+
+        <a-box id="CuboVermelho"
+        color="#d00000"
+        position="-7 4 0"
+        scale="1.5 1.5 1.5"
+        animation="property: rotation;
+                    to: 0 360 0;
+                    loop: true;
+                    dur: 5000;
+                    easing: linear">
+        </a-box>
+
+    
+        <!-- Orbiting and Revolving Box -->
+        <a-entity
+        geometry="primitive: plane; width: 9; height: 1"
+        position="0 2 0"
+        material="color: #ccc; roughness:1;"
+        text="width: 10; 
+        color:#000;
+        wrapCount: 90; 
+        align: center;
+        value: property: material.color | from: #15a581 | to: #15212b | loop: true | dir: alternate | dur: 1500">
+        </a-entity>
+
+
+        <!-- Animated Color -->
+
+        <a-sphere
+        color="#FFFFFF"
+        radius="1"
+        position="0 4 0"
+        animation="property: material.color;
+                    from: #d00000;
+                    to: #FFAA00;
+                    loop: true;
+                    dir: alternate;
+                    dur: 5000">
+        </a-sphere>
+
+        <!-- Moving Box -->
+        <!-- ALl the new easing functions are available here:
+             https://aframe.io/docs/1.0.0/components/animation.html#easings -->
+             <a-entity
+             geometry="primitive: plane; width: 9; height: 1"
+             position="9 2 0"
+             material="color: #FFAA00; roughness:1;"
+             text="width: 10;
+             color: #000; 
+             wrapCount: 90; 
+             align: center;
+             value: property: scale | from: 0.01 0.01 0.01 | to: 0.03 0.03 0.03 | loop:true | dir: alternate |  dur: 3000"></a-entity>
+             <a-entity
+             gltf-model="#mech"
+             scale="0.02 0.02 0.02"
+             position="7 2.5 0"
+             animation-mixer
+             animation="property: scale;
+             from: 0.01 0.01 0.01;
+             to: 0.03 0.03 0.03;
+             loop:true;
+             dir: alternate; dur: 3000"
+             ></a-entity>
+
+
+
+
+    </a-scene>
+</body>
+</html>
