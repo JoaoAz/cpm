@@ -1,6 +1,8 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Animações Simples</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <!-- Animação do Modelo GLTF-->
@@ -8,7 +10,14 @@
 </head>
 
 <body>
-
+    <!-- #### DOCUMENTAÇÂO -->
+    <!-- 
+        https://aframe.io/docs/1.0.4/components/animation.html 
+        https://aframe.io/docs/1.0.0/components/animation.html#easings
+        https://aframe.io/docs/1.0.0/components/sound.html
+        https://aframe.io/docs/1.0.0/components/text.html
+        https://github.com/donmccurdy/aframe-extras/tree/master/src/loaders (controla a animação do modelo GLTF)
+    -->
     <a-scene>
         <a-assets>
             <audio id="som" src="som/laser_20.mp3"></audio>
@@ -54,7 +63,7 @@
         ></a-light>
 
         <!-- #### EXEMPLO #01 ##################################################################### -->
-        <!-- #### Cubo em rotação ##################################################### -->
+        <!-- #### Cubo em rotação ########################################### -->
 
         <!-- Texto com as propriedades da animação de rotação do Cubo-->
         <a-entity 
